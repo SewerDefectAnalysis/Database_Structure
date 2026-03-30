@@ -3,7 +3,7 @@
 
 ## Project overview
 
-This repository provides the complete database structure developed for the paper _Data Requirements for Defect-Level Sewer Pipe Condition Modeling: A State-of-the-Art Review on Sewer Deterioration Analysis_. Its purpose is to translate the conceptual Entity–Relationship Diagram (ERD) (see Fig. 5 in the manuscript) into an executable relational schema using Python, ensuring a coherent and well-organized representation of all entities, attributes, and relationships involved in defect-level sewer condition analysis.
+This repository provides the complete database structure developed for the paper _Data Requirements for Defect-Level Sewer Pipe Condition Modeling: a State-of-the-Art Review_. Its purpose is to translate the conceptual Entity–Relationship Diagram (ERD) (see Fig. 5 in the manuscript) into an executable relational schema using Python, ensuring a coherent and well-organized representation of all entities, attributes, and relationships involved in defect-level sewer condition analysis.
 
 The database is implemented using SQLAlchemy, which functions as the Object–Relational Mapper (ORM) to:
 
@@ -31,6 +31,8 @@ Defines the full relational schema of the database using SQLAlchemy. This file i
 * **Failures:** records failure events affecting the sewer system, including their causes, impacts, and connection to pipe interventions.
 
 It defines all attributes, data types, primary keys, foreign keys, and the complete set of one-to-many and many-to-many relationships.
+
+> **Important note:** The data types defined in this schema follow those specified in the ERD. However, they can be adapted depending on the characteristics of the input data. For example, identifiers such as Pipe_ID are defined as numeric in this implementation but may be stored as strings if they contain alphanumeric values in other datasets.
 
 ---
 
@@ -60,31 +62,22 @@ This notebook serves as a practical guide for users who want to populate or expl
 
 ## Requirements
 
-To run the database schema and interact with the relational models, the following Python packages are required:
+To run the database schema and interact with the relational models, the following dependencies are required:
 
 * Python 3.8+
-* SQLAlchemy – used to define the relational schema and manage ORM operations
-* pandas – required for working with tabular data before uploading it into the database
-* Jupyter Notebook (optional) – only needed to run the example notebook
+* pandas
+* SQLAlchemy
 
-**Optional dependencies:**
+Additional optional dependencies:
 
-These libraries are only needed depending on the user’s data source:
+* openpyxl – required if working with Excel files
+* Jupyter Notebook – only needed to run the example notebook
 
-* openpyxl – required only when loading Excel (.xlsx) files into pandas
+All required packages can be installed using:
 
-* Other readers (e.g., pyarrow, fiona) may be needed if the user imports data from formats such as Parquet, GeoPackage, or others.
-
-Install the main dependencies using:
+```bash
+pip install -r requirements.txt
 ```
-pip install sqlalchemy pandas 
-```
-
-If you plan to load Excel files:
-```
-pip install openpyxl
-```
-
 ---
 
 ## How to Create the Database
@@ -123,62 +116,60 @@ After running these commands:
 
 ## Loading Data Into the Database
 
-Once the database has been created, data can be inserted into any of the tables defined in the schema. Data must first be loaded into a pandas DataFrame, regardless of the original file format (CSV, Excel, Parquet, etc.). After that, it can be uploaded into the corresponding SQL table.
+Once the database has been created, data can be inserted into any of the tables defined in the schema. The workflow consists of two main steps:
 
-**1. Load your data into a pandas DataFrame**
+1. Read the data into a pandas DataFrame
+2. Upload the DataFrame into the database  
 
-You can load data from different formats. Here are some common examples:
+---
 
-**CSV:**
-```
-import pandas as pd
+### 1. Reading Data
 
-df = pd.read_csv("path/to/file.csv")
-```
+The project includes helper functions to load data into pandas DataFrames. For example, Excel files can be read using:
 
-**Excel (.xlsx):**
-```
-import pandas as pd
+```python
 
-df = pd.read_excel("path/to/file.xlsx", sheet_name=0)
-```
-
-**Parquet:**
-```
-import pandas as pd
-
-df = pd.read_parquet("path/to/file.parquet")
+pipes_df = read_excel_to_dataframe(
+        excel_path="path/to/file.xlsx",
+        sheet_name="PIPES"
+    )
 ```
 
-**2. Upload the DataFrame into a SQL table**
+### 2. Uploading Data into the Database 
 
-To upload data, import the corresponding SQLAlchemy model from `schema.py` and use your helper function (e.g., `upload_dataframe_to_table`) along with the SQL engine defined in `database.py`:
+To upload data, import the corresponding SQLAlchemy model from `schema.py` and use the helper function `upload_dataframe_to_table` along with the database engine:
+
+```python
+upload_dataframe_to_table(
+        df=pipes_df,
+        model_cls=Pipe,
+        engine=engine,
+    )
 ```
-from schema import Pipe        # Import the target table
-from database import engine     # Database engine
+### 3. Running the Full Code
+The full workflow is implemented in the Jupyter Notebook:
 
-upload_dataframe_to_table(df, Pipe, engine)
+`Database_Creation_and_Usage.ipynb`
+
+To run the code, update the file path:
+
+```python
+excel_file = "path/to/your/input_file.xlsx"
 ```
+Then execute all cells in the notebook.
+### 4. Example Dataset 
 
-This function will map each column in the DataFrame to the attributes defined in the model and insert all rows into the table.
+An example Excel file `EXAMPLE_DATA_DataBase.xlsx` is provided in the repository to demonstrate the expected data structure and allow users to run the notebook directly.
 
-**3. Example: Loading pipes data**
-```
-import pandas as pd
-from schema import Pipe
-from database import engine
+This file includes sample data for the main entities (e.g., Pipes, Inspections, Defects) and can be used to:
 
-# Load data
-pipes_df = pd.read_excel("documents/PIPES.xlsx")
+* Test the database creation
+* Validate the data upload process
+* Understand the required input format
 
-# Upload to the database
-upload_dataframe_to_table(pipes_df, Pipe, engine)
-```
+### 5. Notes
 
-**4. Notes**
-
-The DataFrame must contain columns that match the attribute names in the SQLAlchemy model.
-
+* The DataFrame must contain columns that match the attribute names in the SQLAlchemy model.
 * Missing values (NaN) will be inserted as NULL.
 * Additional preprocessing (type conversions, renaming columns) can be performed before uploading.
 * This process can be repeated for any entity in the ERD (e.g., Manhole, Inspection, Defect, Failure, etc.).
