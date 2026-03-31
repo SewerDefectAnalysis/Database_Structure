@@ -121,9 +121,7 @@ Once the database has been created, data can be inserted into any of the tables 
 1. Read the data into a pandas DataFrame
 2. Upload the DataFrame into the database  
 
----
-
-** 1. Reading Data **
+### 1. Reading Data
 
 The project includes helper functions to load data into pandas DataFrames. For example, Excel files can be read using:
 
@@ -157,6 +155,7 @@ To run the code, update the file path:
 excel_file = "path/to/your/input_file.xlsx"
 ```
 Then execute all cells in the notebook.
+
 ### 4. Example Dataset 
 
 An example Excel file `EXAMPLE_DATA_DataBase.xlsx` is provided in the repository to demonstrate the expected data structure and allow users to run the notebook directly.
