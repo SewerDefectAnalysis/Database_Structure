@@ -123,7 +123,7 @@ Once the database has been created, data can be inserted into any of the tables 
 
 ---
 
-### 1. Reading Data
+** 1. Reading Data **
 
 The project includes helper functions to load data into pandas DataFrames. For example, Excel files can be read using:
 
