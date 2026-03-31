@@ -102,7 +102,7 @@ class Pipe(Base):
     # Type of human activity at the pipe location (land cover)(e.g., Mixed, Vegetation)
     Land_cover = Column(String, nullable=True)
 
-    # Number of trees within a user-defined buffer around the pipe
+    # Number of trees within a user-defined buffer around the pipe (-)
     Trees_nearby = Column(Integer, nullable=True)
 
     # Cross-sectional shape of the pipe (e.g.,circular, oviform)
@@ -114,7 +114,7 @@ class Pipe(Base):
     # Type of joint used to connect pipe segments (e.g., Mortar joint, Rubber ring)
     Joint_type = Column(String, nullable=True)
 
-    # Number of residents served by the pipe catchment
+    # Number of residents served by the pipe catchment (-)
     Population = Column(Integer, nullable=True)
 
     # Climatic characteristics of the area where the pipe is located
@@ -125,7 +125,7 @@ class Pipe(Base):
     # Classification of the sewer system (e.g., Transmission, Local)
     Sewer_category = Column(String, nullable=True)
 
-    # Number of property connections to the pipe
+    # Number of property connections to the pipe (-)
     Sewer_connections = Column(Integer, nullable=True)
 
     # Identifier of the nearest weather station
@@ -135,7 +135,7 @@ class Pipe(Base):
     # (Depend on each indicator. If more indicators are added, each will have its own unit.)
     Water_quality = Column(Float, nullable=True)
 
-    # Material used to fill the trench around the pipe
+    # Material used to fill the trench around the pipe (e.g.,Sand, crushed rock)
     Backfill_type = Column(String, nullable=True)
 
     # Expected service life of the pipe according to design standards (years)
@@ -150,7 +150,7 @@ class Pipe(Base):
     # Pipe wall thickness (mm)
     Wall_thickness = Column(Float, nullable=True)
 
-    #Coating of the pipe
+    #Coating of the pipe (e.g.,epoxy, polyurethane)
     Coating=Column(String, nullable=True)
 
     # Assessed quality or condition of the installation work
@@ -193,7 +193,7 @@ class Pipe(Base):
     Soil_type = Column(String, nullable=True)
 
     # Soil moisture content or moisture classification
-    Soil_moisture = Column(String, nullable=True)
+    Soil_moisture = Column(Float, nullable=True)
 
     # Electrical resistivity of the soil (ohm·m), related to corrosion risk
     Soil_resistivity = Column(Float, nullable=True)
@@ -202,7 +202,7 @@ class Pipe(Base):
     # SURFACE LOAD (GEOSPATIAL RELATIONSHIP)
     # -------------------------
 
-    #Intensity of vehicle load acting on the surface above the pipe
+    #Intensity of vehicle load acting on the surface above the pipe (e.g., Very low, low, medium)
     Traffic_load=Column(String, nullable=True)
 
     #Is there a municipal road running or crossing  over the pipe?
@@ -605,10 +605,10 @@ class HydraulicProperties(Base):
     # HYDRAULIC ATTRIBUTES
     # -------------------------
 
-    # The maximum flow rate recorded or estimated in the sewer during wet weather conditions (m3/s)
+    # The maximum flow rate recorded or estimated in the sewer during wet weather conditions (L/s)
     Wet_peak_flow_rate = Column(Float, nullable=True)
 
-    # The maximum flow rate recorded or estimated in the sewer under dry weather conditions (m3/s)
+    # The maximum flow rate recorded or estimated in the sewer under dry weather conditions (L/s)
     Dry_peak_flow_rate = Column(Float, nullable=True)
 
     # The highest velocity of flow measured or simulated in the sewer during wet weather conditions (m/s)
@@ -750,7 +750,7 @@ class Inspection (Base):
     # Length of pipe that was inspected (m)
     Survey_length = Column(Float, nullable=True)
 
-    # Status of the inspection (e.g., completed, in progress, cancelled)
+    # Status of the inspection (e.g., completed, cancelled)
     Inspection_status = Column(String, nullable=True)
 
     #The direction in which the CCTV was made (e.g.,upstream, downstream)
@@ -815,7 +815,7 @@ class Defect(Base):
     # Additional code describing the nature  of the defect, complementing the main defect code.
     Characterization_code = Column(String, nullable=True)
 
-    # Quantification or severity of the defect (e.g., size, percentage)
+    # Quantification of the defect (e.g., size, percentage)
     Quantification = Column(String, nullable=True)
 
     # Distance from the starting manhole of the pipe to the location of the defect (m).
@@ -827,7 +827,7 @@ class Defect(Base):
     # Clock position (from 0 to 12) indicating where the defect ends around the inner circumference of the pipe, using the same reference as Circumferential_start.
     Circumferential_end = Column(Integer, nullable=True)
 
-    #The extent of the defects. Explain the start and finish of the defect (Example: S.01 and F.02)
+    #The extent of the defects. Explain the start and finish of the defect (e.g.,S.01 and F.02)
     Continuous_defect=Column(String, nullable=True)
 
     # Free-text notes providing additional details or context about the defect.
