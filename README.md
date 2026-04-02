@@ -3,6 +3,8 @@
 
 ## Project overview
 
+The diagram below presents an overview of the project, which is divided into four main modules and one optional component. This repository focuses on the section highlighted in red.
+
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
 flowchart LR
@@ -37,6 +39,7 @@ flowchart LR
     classDef optional fill:#F5F5F5,stroke:#666666,stroke-width:1.8px,stroke-dasharray: 5 5
 
 ```
+## Database Structure- Repository
 This repository provides the complete database structure developed for the paper _Data Requirements for Defect-Level Sewer Pipe Condition Modeling: a State-of-the-Art Review_. Its purpose is to translate the conceptual Entity–Relationship Diagram (ERD) (see Fig. 5 in the manuscript) into an executable relational schema using Python, ensuring a coherent and well-organized representation of all entities, attributes, and relationships involved in defect-level sewer condition analysis.
 
 The database is implemented using SQLAlchemy, which functions as the Object–Relational Mapper (ORM) to:
