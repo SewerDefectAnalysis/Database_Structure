@@ -3,7 +3,7 @@
 
 ## Project overview
 
-The diagram below presents an overview of the project, which is divided into four main modules and one optional component. This repository focuses on the section highlighted in red.
+The diagram below provides an overview of the project workflow, which is organized into four main steps and one optional component. This repository corresponds to the database structure step, highlighted in red in the figure.
 
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
