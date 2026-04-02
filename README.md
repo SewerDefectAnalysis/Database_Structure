@@ -9,7 +9,7 @@ The diagram below provides an overview of the project workflow, which is organiz
 %%{init: {'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
 flowchart LR
 
-    A[Database <br/>Structure <br/>and<br/> Data <br/>Implementation]:::data -->  B[Validation<br/>Rules]:::validation
+    A[Database Structure]:::data -->  B[Validation<br/>Rules]:::validation
     B --> D[Defect Distribution<br/>Analysis]:::analysis
     D --> E[Defect-Factor<br/>Correlation]:::analysisP2
 
@@ -21,7 +21,7 @@ flowchart LR
     style optional_branch fill:none,stroke:none
 
     subgraph stage1[ ]
-        A[Database<br/>Creation]
+        A[Database Structure]
     end
  
     style stage1 stroke:#FF0000,stroke-width:3px,fill:none
