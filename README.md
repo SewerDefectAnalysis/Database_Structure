@@ -10,7 +10,6 @@ flowchart LR
     A[Database<br/>Creation]:::data --> B[Validation<br/>Rules]:::validation
     B --> D[Defect Distribution<br/>Analysis]:::analysis
     D --> E[Defect-Factor<br/>Correlation]:::analysisP2
-    E --> F[Defect<br/>Prediction]:::prediction
 
     %% Optional branch BELOW
     subgraph optional_branch[ ]
@@ -28,11 +27,6 @@ flowchart LR
 
     %% Click links
     click A "https://github.com/SewerDefectAnalysis/Database_Structure"
-    click B "https://github.com/SewerDefectAnalysis/Database_Structure"
-    click C "https://github.com/SewerDefectAnalysis/Database_Structure"
-    click D "https://github.com/SewerDefectAnalysis/Database_Structure"
-    click E "https://github.com/SewerDefectAnalysis/Database_Structure"
-    click F "https://github.com/SewerDefectAnalysis/Database_Structure"
 
     %% Styles
     classDef data fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.8px
