@@ -9,7 +9,7 @@ The diagram below provides an overview of the project workflow, which is organiz
 %%{init: {'flowchart': {'nodeSpacing': 40, 'rankSpacing': 50}}}%%
 flowchart LR
 
-    A[Database<br/>Creation]:::data --> B[Validation<br/>Rules]:::validation
+    A[Database <br/>Structure <br/>and<br/> Data <br/>Implementation]:::data -->  B[Validation<br/>Rules]:::validation
     B --> D[Defect Distribution<br/>Analysis]:::analysis
     D --> E[Defect-Factor<br/>Correlation]:::analysisP2
 
