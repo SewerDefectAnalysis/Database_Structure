@@ -29,6 +29,8 @@ flowchart LR
 
     %% Click links
     click A "https://github.com/SewerDefectAnalysis/Database_Structure"
+    click B "https://github.com/SewerDefectAnalysis/Data_validation"
+    click C "https://github.com/SewerDefectAnalysis/Data_validation"
 
     %% Styles
     classDef data fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.8px
