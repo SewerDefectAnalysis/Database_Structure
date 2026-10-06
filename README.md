@@ -31,6 +31,8 @@ flowchart LR
     click A "https://github.com/SewerDefectAnalysis/Database_Structure"
     click B "https://github.com/SewerDefectAnalysis/Data_validation"
     click C "https://github.com/SewerDefectAnalysis/Data_validation"
+    click D "https://github.com/SewerDefectAnalysis/Defect_description"
+    click E "https://github.com/SewerDefectAnalysis/Defect_Factor_Correlation"
 
     %% Styles
     classDef data fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.8px
