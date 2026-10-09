@@ -233,8 +233,7 @@ After modifying the schema, run `create_tables()` again to regenerate the struct
 
 If you use this database structure, the ERD, or any component of this repository in your research, please cite the corresponding paper:
 
-González, M. A., Herrán, J., van Zyl, J. E., & Henning, T. F. P. (2025). 
-Data Requirements for Defect-Level Sewer Pipe Condition Modeling: A State-of-the-Art Review. _Journal of Water Resources Planning and Management_.
+González, M. A., Herrán, J., van Zyl, J. E., & Henning, T. F. P. (2026). Data requirements for defect-level sewer pipe condition modeling. _Journal of Water Resources Planning and Management_, 152(11), 03126006. https://doi.org/10.1061/JWRMD5.WRENG-7278
 
 ---
 
